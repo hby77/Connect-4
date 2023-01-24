@@ -1,0 +1,58 @@
+/* Player 1 Wins!: Popup Textbox
+Player 2 Wins!: Popup Textbox
+Draw Banner!
+Player 1's Turn Textbox
+Player 2's Turn Textbox
+Board Design
+Body Background
+6 by 7 Board */ 
+
+html {
+    background: url('https://wallpapercrafter.com/desktop/121516-Volibear-League-of-Legends-Riot-Games-Ornn-League-Of-Legends.jpg') no-repeat center center fixed;
+    background-size: cover;
+    width: 100%;
+}
+
+body{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    height: 550px;
+    width: 700px;
+    margin: 10px 10px 10px;
+    background-color: rgba(53, 96, 190, 0.7);
+    border: 5px solid #e0d778;
+    border-radius: 2.5rem;
+}
+
+.circle {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    border: 4px solid #e0d778;
+    height: 75px;
+    width: 75px;
+    margin: auto;
+    cursor: pointer;
+
+}
+
+.circle:hover{
+    background-color: #e0d778;
+}
+
+
+/* .logo {
+    max-width: 65px;  
+    max-height: 65px;
+    display: flex;
+    justify-content: flex-start;
+} */
