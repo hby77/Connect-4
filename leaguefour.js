@@ -17,21 +17,17 @@ let whiteWins = false
 const redMoves = []
 const whiteMoves = []
 const checkWin = () => {
-
     if (redMoves.length > 3) {
         winCondition.forEach((combo) => {
-            function checkCombo(playerMoves, theCombo) {
-                return theCombo.every(number => {
+            function checkCombo(playerMoves, winCombo) {
+                return winCombo.every(number => {
                     return playerMoves.includes(number)
                 })
             }
             redWins = checkCombo(redMoves, combo)
             whiteWins = checkCombo(whiteMoves, combo)
             console.log(redWins, whiteWins)
-            if (redWins === true) {
-                return
-            }
-                    })
+        })
     }
 }
 
@@ -65,7 +61,12 @@ circles.forEach(circle => {
     circle.addEventListener("click", circleClick)
 })
 
+// const restartButton = () => {
+//     for()
+//     for loop all the divs
+//     look into .remove and .set methods
 
+// }
 
 
 
@@ -74,11 +75,7 @@ circles.forEach(circle => {
 
 // })
 
-// const restartButton = () => {
-//     for loop all the divs
-//     look into .remove and .set methods
 
-// }
 
 
 // when function restart button is pressed, wipe the board once (maybe with null?) and make currentplayer = "porored"
