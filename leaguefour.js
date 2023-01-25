@@ -11,20 +11,57 @@
 //make a draw condition if there are no more applicable pieces
 //make it so you cant place pieces after game is finished
 const circles = document.querySelectorAll(".circle")
-
 let currentPlayer = "porored"
+let redWins = false
+let whiteWins = false
+const redMoves = []
+const whiteMoves = []
+const checkWin = () => {
+
+    if (redMoves.length > 3) {
+        winCondition.forEach((combo) => {
+            function checkCombo(playerMoves, theCombo) {
+                return theCombo.every(number => {
+                    return playerMoves.includes(number)
+                })
+            }
+            redWins = checkCombo(redMoves, combo)
+            whiteWins = checkCombo(whiteMoves, combo)
+            console.log(redWins, whiteWins)
+            if (redWins === true) {
+                return
+            }
+                    })
+    }
+}
+
+const placeCircle = (e) => {
+    if (e.target.classList.length === 1) {
+        if (currentPlayer === "porored") {
+            e.target.classList.add("porored")
+            redMoves.push(parseInt(e.target.innerText))
+            checkWin()
+            currentPlayer = "porowhite"
+        } else if (currentPlayer === "porowhite") {
+            e.target.classList.add("porowhite")
+            whiteMoves.push(parseInt(e.target.innerText))
+            checkWin()
+            currentPlayer = "porored"
+        }
+    }
+}
+
 
 const circleClick = (e) => {
-    if (currentPlayer === "porored" && e.target.classList.length === 1) {
-        e.target.classList.add("porored")
-        currentPlayer = "porowhite"
-}   else if (currentPlayer === "porowhite" && e.target.classList.length === 1){
-        e.target.classList.add("porowhite")
-        currentPlayer = "porored"
-}
+    const turnToNumber = parseInt(e.target.id)
+    const bottomCircle = parseInt(e.target.id) + 7
+    if (turnToNumber >= 35 || circles[bottomCircle].classList.length > 1) {
+        placeCircle(e)
+    }
 }
 
 circles.forEach(circle => {
+    circle.innerText = circle.id
     circle.addEventListener("click", circleClick)
 })
 
@@ -33,6 +70,18 @@ circles.forEach(circle => {
 
 
 
+// circles.forEach(circle => {
+
+// })
+
+// const restartButton = () => {
+//     for loop all the divs
+//     look into .remove and .set methods
+
+// }
+
+
+// when function restart button is pressed, wipe the board once (maybe with null?) and make currentplayer = "porored"
 
 
 
@@ -41,86 +90,83 @@ circles.forEach(circle => {
 
 
 
-// const winCondition = [
-//     //verticle
-//     [1, 2, 3, 4],
-//     [2, 3, 4, 5],
-//     [3, 4, 5, 6],
-//     [4, 5, 6, 7],
-//     [8, 9, 10, 11],
-//     [9, 10, 11, 12],
-//     [10, 11, 12, 13],
-//     [11, 12, 13, 14],
-//     [15, 16, 17, 18],
-//     [16, 17, 18, 19],
-//     [17, 18, 19, 20],
-//     [18, 19, 20, 21],
-//     [22, 23, 24, 25],
-//     [23, 24, 25, 26],
-//     [24, 25, 26, 27],
-//     [25, 26, 27, 28],
-//     [29, 30, 31, 32],
-//     [30, 31, 32, 33],
-//     [31, 32, 33, 34],
-//     [32, 33, 34, 35],
-//     [36, 37, 38, 39],
-//     [37, 38, 39, 40],
-//     [38, 39, 40, 41],
-//     [39, 40, 41, 42],
-//     //horizontal
-//     [1, 8, 15, 22],
-//     [8, 15, 22, 29],
-//     [15, 22, 29, 36],
-//     [2, 9, 16, 23],
-//     [9, 16, 23, 30],
-//     [16, 23, 30, 37],
-//     [3, 10, 17, 24],
-//     [10, 17, 24, 31],
-//     [17, 24, 31, 38],
-//     [4, 11, 18, 25],
-//     [11, 18, 25, 32],
-//     [18, 25, 32, 39],
-//     [5, 12, 19, 26],
-//     [12, 19, 26, 33],
-//     [19, 26, 33, 40],
-//     [6, 13, 20, 27],
-//     [13, 20, 27, 34],
-//     [20, 27, 34, 41],
-//     [7, 14, 21, 28],
-//     [14, 21, 28, 35],
-//     [21, 28, 35, 42],
-//     //bot left to top right diagnol
-//     [15, 23, 31, 39],
-//     [8, 16, 24, 32],
-//     [16, 24, 32, 40],
-//     [1, 9, 17, 25],
-//     [9, 17, 25, 33],
-//     [17, 25, 33, 41],
-//     [2, 10, 18, 26],
-//     [10, 18, 26, 34],
-//     [18, 26, 34, 42],
-//     [3, 11, 19, 27],
-//     [11, 19, 27, 35],
-//     [4, 12, 20, 28],
-//     //top left bot right diagnol
-//     [22, 16, 10, 4],
-//     [29, 23, 17, 11],
-//     [23, 17, 11, 5],
-//     [36, 30, 24, 18],
-//     [30, 24, 18, 12],
-//     [24, 18, 12, 6],
-//     [37, 31, 25, 19],
-//     [31, 25, 19, 13],
-//     [25, 19, 13, 7],
-//     [38, 32, 26, 20],
-//     [32, 26, 20, 14],
-//     [39, 33, 27, 21]
-//     ]
-    
-    
-//     // const click = document.querySelector(".circle")
-//     // //when i click on a circle, make a chip appear
-//     // click.addEventListener("click", e => {
-//     //     return 
-//     // })
-    
+
+
+
+
+
+const winCondition = [
+    //horizontal
+    [35, 36, 37, 38],
+    [36, 37, 38, 39],
+    [37, 38, 39, 40],
+    [38, 39, 40, 41],
+    [28, 29, 30, 31],
+    [29, 30, 31, 32],
+    [30, 31, 32, 33],
+    [31, 32, 33, 34],
+    [21, 22, 23, 24],
+    [22, 23, 24, 25],
+    [23, 24, 25, 26],
+    [24, 25, 26, 27],
+    [14, 15, 16, 17],
+    [15, 16, 17, 18],
+    [16, 17, 18, 19],
+    [17, 18, 19, 20],
+    [7, 8, 9, 10],
+    [8, 9, 10, 11],
+    [9, 10, 11, 12],
+    [10, 11, 12, 13],
+    [0, 1, 2, 3],
+    [1, 2, 3, 4],
+    [2, 3, 4, 5],
+    [3, 4, 5, 6],
+    //vertical
+    [35, 28, 21, 14],
+    [28, 21, 14, 7],
+    [21, 14, 7, 0],
+    [36, 29, 22, 15],
+    [29, 22, 15, 8],
+    [22, 15, 8, 1],
+    [37, 30, 23, 16],
+    [30, 23, 16, 9],
+    [23, 16, 9, 2],
+    [38, 31, 24, 17],
+    [31, 24, 17, 10],
+    [24, 17, 10, 3],
+    [39, 32, 25, 18],
+    [32, 25, 18, 11],
+    [25, 18, 11, 4],
+    [40, 33, 26, 19],
+    [33, 26, 19, 12],
+    [26, 19, 12, 5],
+    [41, 34, 27, 20],
+    [34, 27, 20, 13],
+    [27, 20, 13, 6],
+    //bottom right to top left diagnol
+    [38, 30, 22, 14],
+    [39, 31, 23, 15],
+    [31, 23, 15, 7],
+    [40, 32, 24, 16],
+    [32, 24, 16, 8],
+    [24, 16, 8, 0],
+    [41, 33, 25, 17],
+    [33, 25, 17, 9],
+    [25, 17, 9, 1],
+    [34, 26, 18, 10],
+    [26, 18, 10, 2],
+    [27, 19, 11, 3],
+    //bottom left to top right diagnol
+    [38, 32, 26, 20],
+    [37, 31, 25, 19],
+    [31, 25, 19, 13],
+    [36, 30, 24, 18],
+    [30, 24, 18, 12],
+    [24, 28, 12, 6],
+    [35, 29, 23, 17],
+    [29, 23, 17, 11],
+    [23, 17, 11, 5],
+    [28, 22, 16, 10],
+    [22, 16, 10, 4],
+    [21, 15, 9, 3],
+]
