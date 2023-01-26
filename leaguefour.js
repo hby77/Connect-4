@@ -43,7 +43,11 @@ const placeCircle = (e) => {
             checkWin()
                 if (redWins === true) {
                     stopPlaying()
-                    whichPlayer.innerText = "Red Poro Wins"
+                    whichPlayer.innerText = "Ornn Wins"
+                    for(let circle of circles) {
+                        circle.classList.remove("porowhite")
+                        circle.classList.add("porored")
+                    }
             }
             currentPlayer = "porowhite"
         } else if (currentPlayer === "porowhite") {
@@ -55,7 +59,7 @@ const placeCircle = (e) => {
             checkWin()
                 if (whiteWins === true) {
                     stopPlaying()
-                    whichPlayer.innerText = "White Poro Wins"
+                    whichPlayer.innerText = "Volibear Wins"
             }
             currentPlayer = "porored"
         }

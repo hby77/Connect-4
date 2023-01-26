@@ -28,8 +28,10 @@ h1 {
     color: wheat;
     padding: 5px 10px;
     border-radius: 8px;
-    margin: 30px 400px 0px 400px;
+    margin: 0 auto;
     text-shadow: 5px 5px black;
+    min-width: 500px;
+    max-width: 800px;
 }
 
 .buttonContainer {
