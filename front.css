@@ -11,3 +11,23 @@ html {
     justify-content: flex-start;
     margin: 1px;
 }
+
+h1 {
+    text-align: center;
+    font-family: copperplate;
+    font-size: 100px;
+    color: #e0d778;
+    text-shadow: 7px 7px rgba(77, 71, 163, 0.7);
+    margin: 60px 0px 30px 0px;
+}
+
+.container {
+    background: rgba(53, 96, 190, 0.7);
+    font-size: 20px;
+    text-align: center;
+    color: wheat;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 0px 100px 0px 100px;
+    text-shadow: 5px 5px black;
+}
