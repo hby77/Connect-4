@@ -10,11 +10,11 @@ const checkWin = () => {
     if (redMoves.length > 3) {
         winCondition.forEach((combo) => {
             if (redMoves.includes(combo[0]) && redMoves.includes(combo[1]) && redMoves.includes(combo[2]) && redMoves.includes(combo[3])) {
-                redWins = true 
+                redWins = true
             }
             if (whiteMoves.includes(combo[0]) && whiteMoves.includes(combo[1]) && whiteMoves.includes(combo[2]) && whiteMoves.includes(combo[3])) {
                 whiteWins = true
-            } 
+            }
         })
     }
 }
@@ -25,12 +25,14 @@ const placeCircle = (e) => {
             e.target.classList.add("porored")
             whichPlayer.innerText = "White Poro Turn"
             redMoves.push(parseInt(e.target.innerText))
-            checkWin() 
+            checkWin()
             console.log(redWins)
             if (redWins === true) {
                 whichPlayer.innerText = "Red Poro Wins"
-                //if red poro wins, make every circle unclickable
-                restartFunction()
+                for (let circle of circles) {
+                    circle.classList.add("usedCircle")
+                }
+                
             }
             currentPlayer = "porowhite"
         } else if (currentPlayer === "porowhite") {
@@ -41,7 +43,11 @@ const placeCircle = (e) => {
             console.log(whiteWins)
             if (whiteWins === true) {
                 whichPlayer.innerText = "White Poro Wins"
-                restartFunction()
+                for (let circle of circles) {
+                    circle.classList.add("usedCircle")
+                }
+                
+
             }
             currentPlayer = "porored"
         }
@@ -57,32 +63,15 @@ const circleClick = (e) => {
     }
 }
 
-
 const restartFunction = () => {
-location.reload()
-    }
-    document.querySelector("#restart").addEventListener("click", restartFunction)
-    
+    location.reload()
+}
+document.querySelector("#restart").addEventListener("click", restartFunction)
+
 circles.forEach(circle => {
     circle.innerText = circle.id
     circle.addEventListener("click", circleClick)
 })
-
-// circles.forEach(circle => {
-//     circle.removeEventListener("click", circleClick)
-// })
-
-
-
-
-
-
-
-// circles.forEach(circle => {
-
-
-
-
 
 const winCondition = [
     //horizontal

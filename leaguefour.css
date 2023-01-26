@@ -98,3 +98,8 @@ h2 {
     text-shadow: 5px 5px rgba(77, 71, 163, 0.7);
     color: wheat;
 }
+
+.usedCircle {
+    cursor: not-allowed;
+    pointer-events: none;
+}
