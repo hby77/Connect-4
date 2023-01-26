@@ -3,7 +3,9 @@ let redWins = false
 let whiteWins = false
 let counter = 0
 let music = new Audio("bgm.mp3")
-music.volume = 0.02
+music.volume = 0.01
+let chip = new Audio("chip.mp3")
+music.volume = 0.3
 const whichPlayer = document.querySelector(".whichPlayer")
 const circles = document.querySelectorAll(".circle")
 whichPlayer.innerText = "Red Poro's Turn"
@@ -34,6 +36,7 @@ const placeCircle = (e) => {
     if (e.target.classList.length === 1) {
         if (currentPlayer === "porored") {
             e.target.classList.add("porored")
+            chip.play()
             counter++
             whichPlayer.innerText = "White Poro Turn"
             redMoves.push(parseInt(e.target.innerText))
@@ -45,6 +48,7 @@ const placeCircle = (e) => {
             currentPlayer = "porowhite"
         } else if (currentPlayer === "porowhite") {
             e.target.classList.add("porowhite")
+            chip.play()
             counter++
             whichPlayer.innerText = "Red Poro's Turn"
             whiteMoves.push(parseInt(e.target.innerText))
@@ -72,6 +76,7 @@ const circleClick = (e) => {
 const restartFunction = () => {
     location.reload()
 }
+
 document.querySelector("#restart").addEventListener("click", restartFunction)
 
 circles.forEach(circle => {
