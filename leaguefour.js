@@ -44,10 +44,11 @@ const placeCircle = (e) => {
                 if (redWins === true) {
                     stopPlaying()
                     whichPlayer.innerText = "Ornn Wins"
+                    setTimeout (() => {
                     for(let circle of circles) {
                         circle.classList.remove("porowhite")
                         circle.classList.add("porored")
-                    }
+                    }}, 2000)
             }
             currentPlayer = "porowhite"
         } else if (currentPlayer === "porowhite") {
@@ -60,10 +61,11 @@ const placeCircle = (e) => {
                 if (whiteWins === true) {
                     stopPlaying()
                     whichPlayer.innerText = "Volibear Wins"
-                    for(let circle of circles) {
-                        circle.classList.remove("porored")
-                        circle.classList.add("porowhite")
-                    }
+                    setTimeout (() => {
+                        for(let circle of circles) {
+                            circle.classList.remove("porored")
+                            circle.classList.add("porowhite")
+                        }}, 2000)
             }
             currentPlayer = "porored"
         }
