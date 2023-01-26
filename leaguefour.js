@@ -19,29 +19,37 @@ const whiteMoves = []
 const checkWin = () => {
     if (redMoves.length > 3) {
         winCondition.forEach((combo) => {
-            function checkCombo(playerMoves, winCombo) {
-                return winCombo.every(number => {
-                    return playerMoves.includes(number)
-                })
+            if (redMoves.includes(combo[0]) && redMoves.includes(combo[1]) && redMoves.includes(combo[2]) && redMoves.includes(combo[3])) {
+                redWins = true 
             }
-            redWins = checkCombo(redMoves, combo)
-            whiteWins = checkCombo(whiteMoves, combo)
-            console.log(redWins, whiteWins)
+            if (whiteMoves.includes(combo[0]) && whiteMoves.includes(combo[1]) && whiteMoves.includes(combo[2]) && whiteMoves.includes(combo[3])) {
+                whiteWins = true
+            } 
         })
     }
 }
 
 const placeCircle = (e) => {
+
     if (e.target.classList.length === 1) {
         if (currentPlayer === "porored") {
             e.target.classList.add("porored")
             redMoves.push(parseInt(e.target.innerText))
-            checkWin()
+            checkWin() 
+            console.log(redWins)
+            if (redWins === true) {
+                alert ('red wins')
+
+            }
             currentPlayer = "porowhite"
         } else if (currentPlayer === "porowhite") {
             e.target.classList.add("porowhite")
             whiteMoves.push(parseInt(e.target.innerText))
             checkWin()
+            console.log(whiteWins)
+            if (whiteWins === true) {
+                alert ('white wins')
+            }
             currentPlayer = "porored"
         }
     }
@@ -56,37 +64,28 @@ const circleClick = (e) => {
     }
 }
 
+
+const restartFunction = () => {
+location.reload()
+    }
+    document.querySelector("#restart").addEventListener("click", restartFunction)
+    
 circles.forEach(circle => {
     circle.innerText = circle.id
     circle.addEventListener("click", circleClick)
 })
 
-// const restartButton = () => {
-//     for()
-//     for loop all the divs
-//     look into .remove and .set methods
-
-// }
-
-
-
-
 // circles.forEach(circle => {
-
+//     circle.removeEventListener("click", circleClick)
 // })
 
 
 
 
-// when function restart button is pressed, wipe the board once (maybe with null?) and make currentplayer = "porored"
 
 
 
-
-
-
-
-
+// circles.forEach(circle => {
 
 
 
