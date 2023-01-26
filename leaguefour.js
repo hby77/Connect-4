@@ -1,11 +1,49 @@
 let currentPlayer = "porored"
 let redWins = false
 let whiteWins = false
+let counter = 0
 const whichPlayer = document.querySelector(".whichPlayer")
 const circles = document.querySelectorAll(".circle")
 whichPlayer.innerText = "Red Poro's Turn"
+
+const stopPlaying = () => {
+    for (let circle of circles) {
+        circle.classList.add("usedCircle")
+}}
+
+const switchPlayers = () => {
+    if (currentPlayer === "porored") {
+        e.target.classList.add("porored")
+        counter++
+        console.log(counter)
+        whichPlayer.innerText = "White Poro Turn"
+        redMoves.push(parseInt(e.target.innerText))
+        checkWin()
+        console.log(redWins)
+        if (redWins === true) {
+            stopPlaying()
+            whichPlayer.innerText = "Red Poro Wins"
+        }
+        currentPlayer = "porowhite"
+    } else if (currentPlayer === "porowhite") {
+        e.target.classList.add("porowhite")
+        counter++
+        console.log(counter)
+        whichPlayer.innerText = "Red Poro's Turn"
+        whiteMoves.push(parseInt(e.target.innerText))
+        checkWin()
+        console.log(whiteWins)
+        if (whiteWins === true) {
+            stopPlaying()
+            whichPlayer.innerText = "White Poro Wins"
+        }
+        currentPlayer = "porored"
+    }
+}
+
 const redMoves = []
 const whiteMoves = []
+
 const checkWin = () => {
     if (redMoves.length > 3) {
         winCondition.forEach((combo) => {
@@ -21,39 +59,10 @@ const checkWin = () => {
 
 const placeCircle = (e) => {
     if (e.target.classList.length === 1) {
-        if (currentPlayer === "porored") {
-            e.target.classList.add("porored")
-            whichPlayer.innerText = "White Poro Turn"
-            redMoves.push(parseInt(e.target.innerText))
-            checkWin()
-            console.log(redWins)
-            if (redWins === true) {
-                whichPlayer.innerText = "Red Poro Wins"
-                for (let circle of circles) {
-                    circle.classList.add("usedCircle")
-                }
-                
-            }
-            currentPlayer = "porowhite"
-        } else if (currentPlayer === "porowhite") {
-            e.target.classList.add("porowhite")
-            whichPlayer.innerText = "Red Poro's Turn"
-            whiteMoves.push(parseInt(e.target.innerText))
-            checkWin()
-            console.log(whiteWins)
-            if (whiteWins === true) {
-                whichPlayer.innerText = "White Poro Wins"
-                for (let circle of circles) {
-                    circle.classList.add("usedCircle")
-                }
-                
-
-            }
-            currentPlayer = "porored"
-        }
-    }
+        switchPlayers()
+    } else (counter === 42)
+        
 }
-
 
 const circleClick = (e) => {
     const turnToNumber = parseInt(e.target.id)
@@ -140,7 +149,7 @@ const winCondition = [
     [31, 25, 19, 13],
     [36, 30, 24, 18],
     [30, 24, 18, 12],
-    [24, 28, 12, 6],
+    [24, 18, 12, 6],
     [35, 29, 23, 17],
     [29, 23, 17, 11],
     [23, 17, 11, 5],
