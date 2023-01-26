@@ -11,36 +11,6 @@ const stopPlaying = () => {
         circle.classList.add("usedCircle")
 }}
 
-const switchPlayers = () => {
-    if (currentPlayer === "porored") {
-        e.target.classList.add("porored")
-        counter++
-        console.log(counter)
-        whichPlayer.innerText = "White Poro Turn"
-        redMoves.push(parseInt(e.target.innerText))
-        checkWin()
-        console.log(redWins)
-        if (redWins === true) {
-            stopPlaying()
-            whichPlayer.innerText = "Red Poro Wins"
-        }
-        currentPlayer = "porowhite"
-    } else if (currentPlayer === "porowhite") {
-        e.target.classList.add("porowhite")
-        counter++
-        console.log(counter)
-        whichPlayer.innerText = "Red Poro's Turn"
-        whiteMoves.push(parseInt(e.target.innerText))
-        checkWin()
-        console.log(whiteWins)
-        if (whiteWins === true) {
-            stopPlaying()
-            whichPlayer.innerText = "White Poro Wins"
-        }
-        currentPlayer = "porored"
-    }
-}
-
 const redMoves = []
 const whiteMoves = []
 
@@ -59,9 +29,34 @@ const checkWin = () => {
 
 const placeCircle = (e) => {
     if (e.target.classList.length === 1) {
-        switchPlayers()
-    } else (counter === 42)
-        
+        if (currentPlayer === "porored") {
+            e.target.classList.add("porored")
+            counter++
+            console.log(counter)
+            whichPlayer.innerText = "White Poro Turn"
+            redMoves.push(parseInt(e.target.innerText))
+            checkWin()
+            console.log(redWins)
+            if (redWins === true) {
+                stopPlaying()
+                whichPlayer.innerText = "Red Poro Wins"
+            }
+            currentPlayer = "porowhite"
+        } else if (currentPlayer === "porowhite") {
+            e.target.classList.add("porowhite")
+            counter++
+            console.log(counter)
+            whichPlayer.innerText = "Red Poro's Turn"
+            whiteMoves.push(parseInt(e.target.innerText))
+            checkWin()
+            console.log(whiteWins)
+            if (whiteWins === true) {
+                stopPlaying()
+                whichPlayer.innerText = "White Poro Wins"
+            }
+            currentPlayer = "porored"
+        }
+    }
 }
 
 const circleClick = (e) => {
