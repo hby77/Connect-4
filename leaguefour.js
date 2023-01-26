@@ -32,30 +32,29 @@ const placeCircle = (e) => {
         if (currentPlayer === "porored") {
             e.target.classList.add("porored")
             counter++
-            console.log(counter)
             whichPlayer.innerText = "White Poro Turn"
             redMoves.push(parseInt(e.target.innerText))
             checkWin()
-            console.log(redWins)
-            if (redWins === true) {
-                stopPlaying()
-                whichPlayer.innerText = "Red Poro Wins"
+                if (redWins === true) {
+                    stopPlaying()
+                    whichPlayer.innerText = "Red Poro Wins"
             }
             currentPlayer = "porowhite"
         } else if (currentPlayer === "porowhite") {
             e.target.classList.add("porowhite")
             counter++
-            console.log(counter)
             whichPlayer.innerText = "Red Poro's Turn"
             whiteMoves.push(parseInt(e.target.innerText))
             checkWin()
-            console.log(whiteWins)
-            if (whiteWins === true) {
-                stopPlaying()
-                whichPlayer.innerText = "White Poro Wins"
+                if (whiteWins === true) {
+                    stopPlaying()
+                    whichPlayer.innerText = "White Poro Wins"
             }
             currentPlayer = "porored"
         }
+    } if (counter === 42) {
+        stopPlaying()
+        whichPlayer.innerText = "No Poro's Win"
     }
 }
 
@@ -74,6 +73,7 @@ document.querySelector("#restart").addEventListener("click", restartFunction)
 
 circles.forEach(circle => {
     circle.innerText = circle.id
+    circle.style.fontSize = "0px"
     circle.addEventListener("click", circleClick)
 })
 

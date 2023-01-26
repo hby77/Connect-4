@@ -1,0 +1,13 @@
+html {
+    background: url('https://static.wikia.nocookie.net/leaguefactions/images/0/0c/Freljord_Fortress.jpg/revision/latest?cb=20150713013411') no-repeat center center fixed;
+    background-size: cover;
+    width: 100%;
+}
+
+.logo {
+    max-width: 65px;
+    max-height: 65px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1px;
+}
