@@ -1,5 +1,5 @@
-html {
-    background: url('https://static.wikia.nocookie.net/leaguefactions/images/0/0c/Freljord_Fortress.jpg/revision/latest?cb=20150713013411') no-repeat center center fixed;
+body {
+    background: url('./freljord.jpeg') no-repeat center center fixed;
     background-size: cover;
     width: 100%;
 }
