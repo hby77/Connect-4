@@ -60,6 +60,10 @@ const placeCircle = (e) => {
                 if (whiteWins === true) {
                     stopPlaying()
                     whichPlayer.innerText = "Volibear Wins"
+                    for(let circle of circles) {
+                        circle.classList.remove("porored")
+                        circle.classList.add("porowhite")
+                    }
             }
             currentPlayer = "porored"
         }
