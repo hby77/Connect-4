@@ -2,6 +2,8 @@ let currentPlayer = "porored"
 let redWins = false
 let whiteWins = false
 let counter = 0
+let music = new Audio("bgm.mp3")
+music.volume = 0.02
 const whichPlayer = document.querySelector(".whichPlayer")
 const circles = document.querySelectorAll(".circle")
 whichPlayer.innerText = "Red Poro's Turn"
@@ -28,6 +30,7 @@ const checkWin = () => {
 }
 
 const placeCircle = (e) => {
+    music.play()
     if (e.target.classList.length === 1) {
         if (currentPlayer === "porored") {
             e.target.classList.add("porored")
